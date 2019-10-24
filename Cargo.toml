@@ -1,0 +1,8 @@
+[workspace]
+members=[
+    "loki-errors",
+    # "parser",
+    # "syntax",
+    # "semant",
+    # "tox",
+]
