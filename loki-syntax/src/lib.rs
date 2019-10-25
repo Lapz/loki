@@ -1,3 +1,5 @@
+#[macro_use]
+mod macros;
 mod ast;
 mod lexer;
 mod parser;
@@ -10,8 +12,8 @@ use loki_errors::{
 
 pub type ParserResult<T> = Result<T, ()>;
 
+use crate::ast::TokenKind;
 use crate::token::Token;
-
 pub struct Parser<'a> {
     /// The input string
     input: &'a str,

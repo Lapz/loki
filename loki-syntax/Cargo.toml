@@ -8,3 +8,7 @@ edition = "2018"
 
 [dependencies]
 loki-errors={path="../loki-errors"}
+
+[dev-dependencies]
+insta = "0.8.2"
+pretty_assertions = "0.6.1"

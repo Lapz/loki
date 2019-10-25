@@ -1,3 +1,5 @@
+mod pratt;
+
 use crate::{Parser, ParserResult};
 
 impl<'a> Parser<'a> {
