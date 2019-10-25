@@ -2,7 +2,7 @@ use crate::ast::TokenKind;
 use crate::token::Token;
 use crate::{Parser, ParserResult};
 use loki_errors::{
-    pos::{CharPosition, Position, Span},
+    pos::{Position, Span},
     Files, Reporter,
 };
 
@@ -19,13 +19,14 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn error(
+    pub(crate) fn error(
         &mut self,
         message: impl Into<String>,
         additional_info: impl Into<String>,
         span: (Position, Position),
     ) {
-        // self.reporter.error(message, additional_info, span)
+        self.reporter
+            .error(self.file_id, message, additional_info, span)
     }
 
     /// Advances the input return the current position and the char we are at

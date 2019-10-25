@@ -3,6 +3,7 @@ mod pratt;
 
 use crate::ast::TokenKind::{self, *};
 use crate::{Parser, ParserResult};
+use loki_errors::pos::Position;
 impl<'a> Parser<'a> {
     pub fn parse(&mut self) -> ParserResult<()> {
         Ok(())
@@ -60,6 +61,58 @@ impl<'a> Parser<'a> {
         false
     }
 
+    pub(crate) fn expect<T: Into<String>>(&mut self, expected: TokenKind) {
+        if self.token_is_ahead(|t| t == expected) {
+            self.bump();
+        } else {
+            self.parser_error(
+                format!("Expected `{}`", expected.text()),
+                format!(
+                    "Expected `{}` but instead found `{}`",
+                    expected.text(),
+                    self.current().text()
+                ),
+            );
+        }
+    }
+
+    fn recover(&mut self) {
+        if self.at(T!["{"]) || self.at(T!["}"]) {
+            return;
+        }
+
+        self.bump();
+    }
+
+    fn recover_until(&mut self, token: TokenKind) {
+        while !self.lookahead.is_none() && !self.at(token) {
+            self.bump();
+        }
+
+        self.bump(); // eat the token as well
+    }
+
+    pub(crate) fn parser_error(
+        &mut self,
+        message: impl Into<String>,
+        additional_info: impl Into<String>,
+    ) {
+        self.recover();
+
+        self.reporter
+            .error(self.file_id, message, additional_info, self.current_span());
+    }
+
+    fn current_span(&self) -> (Position, Position) {
+        self.past_tokens
+            .back()
+            .map(|token| (token.start, token.end))
+            .unwrap_or_else(|| {
+                let token = self.past_tokens.front().unwrap();
+                (token.start, token.end)
+            })
+    }
+
     // pub(crate) fn expect(&mut self, token_to_check: TokenKind, msg: &str) -> ParserResult<()> {
     //     match self.next() {
     //         Ok(Spanned {
@@ -91,7 +144,7 @@ mod test {
         let file_id = files.add("testing", input);
 
         let reporter = loki_errors::Reporter::new(files);
-        let mut parser = crate::Parser::new(input, reporter);
+        let mut parser = crate::Parser::new(input, reporter, file_id);
 
         assert_eq!(parser.peek_token(), crate::TokenKind::FN_KW);
     }
@@ -103,7 +156,7 @@ mod test {
         let file_id = files.add("testing", input);
 
         let reporter = loki_errors::Reporter::new(files);
-        let parser = crate::Parser::new(input, reporter);
+        let parser = crate::Parser::new(input, reporter, file_id);
 
         assert_eq!(parser.token_is_ahead(|t| t == T![fn]), true);
     }
@@ -115,7 +168,7 @@ mod test {
         let file_id = files.add("testing", input);
 
         let reporter = loki_errors::Reporter::new(files);
-        let parser = crate::Parser::new(input, reporter);
+        let parser = crate::Parser::new(input, reporter, file_id);
         assert_eq!(parser.current(), crate::TokenKind::FN_KW);
     }
 
@@ -126,7 +179,7 @@ mod test {
         let file_id = files.add("testing", input);
 
         let reporter = loki_errors::Reporter::new(files);
-        let parser = crate::Parser::new(input, reporter);
+        let parser = crate::Parser::new(input, reporter, file_id);
         assert_eq!(parser.current(), crate::TokenKind::FN_KW);
     }
 
@@ -137,7 +190,7 @@ mod test {
         let file_id = files.add("testing", input);
 
         let reporter = loki_errors::Reporter::new(files);
-        let mut parser = crate::Parser::new(input, reporter);
+        let mut parser = crate::Parser::new(input, reporter, file_id);
         parser.bump();
         assert_eq!(parser.current(), crate::TokenKind::IDENT);
     }

@@ -7,7 +7,7 @@ mod token;
 
 use loki_errors::{
     pos::{CharPosition, Position, Span},
-    Files, Reporter,
+    FileId, Files, Reporter,
 };
 
 use std::collections::VecDeque;
@@ -19,6 +19,8 @@ use crate::token::Token;
 pub struct Parser<'a> {
     /// The input string
     input: &'a str,
+    /// The file id for the file being parsed
+    file_id: FileId,
     /// The position for each char in the stream
     chars: CharPosition<'a>,
     /// The char ahead in the stream
@@ -33,13 +35,14 @@ pub struct Parser<'a> {
 }
 
 impl<'a> Parser<'a> {
-    pub fn new(input: &'a str, reporter: Reporter) -> Self {
+    pub fn new(input: &'a str, reporter: Reporter, file_id: FileId) -> Self {
         let mut chars = CharPosition::new(input);
         let end = chars.pos;
         let mut past_tokens = VecDeque::new();
         let mut parser = Self {
             input,
             end,
+            file_id,
             start: end,
             reporter,
             lookahead: chars.next(),
