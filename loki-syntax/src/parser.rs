@@ -1,5 +1,8 @@
 mod pratt;
-// mod visibility;
+
+mod source_file;
+mod visibility;
+
 
 use crate::ast::TokenKind::{self, *};
 use crate::{Parser, ParserResult};
@@ -61,7 +64,7 @@ impl<'a> Parser<'a> {
         false
     }
 
-    pub(crate) fn expect<T: Into<String>>(&mut self, expected: TokenKind) {
+    pub(crate) fn expect(&mut self, expected: TokenKind) {
         if self.token_is_ahead(|t| t == expected) {
             self.bump();
         } else {
