@@ -2,30 +2,31 @@ use crate::ast::TokenKind;
 use crate::token::Token;
 use crate::{Parser, ParserResult};
 use loki_errors::{
-    pos::{CharPosition, Position, Span},
+    pos::{Position, Span},
     Files, Reporter,
 };
 
 impl<'a> Parser<'a> {
     /// Function that gets the next token and puts it within the Vec whilst returning the
     /// last token
-    pub(crate) fn next(&mut self) -> ParserResult<Span<Token>> {
+    pub(crate) fn next(&mut self) -> Option<Span<Token>> {
         let token = self.next_token();
-        self.past_tokens.push(token);
+        self.past_tokens.push_back(token);
 
-        match self.past_tokens.pop() {
-            Some(token) => Ok(token),
-            None => Err(()),
+        match self.past_tokens.pop_front() {
+            Some(token) => Some(token),
+            None => None,
         }
     }
 
-    fn error(
+    pub(crate) fn error(
         &mut self,
         message: impl Into<String>,
         additional_info: impl Into<String>,
         span: (Position, Position),
     ) {
-        // self.reporter.error(message, additional_info, span)
+        self.reporter
+            .error(self.file_id, message, additional_info, span)
     }
 
     /// Advances the input return the current position and the char we are at
