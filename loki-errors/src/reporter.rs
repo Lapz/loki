@@ -26,7 +26,7 @@ impl Reporter {
 
     pub fn error(
         &mut self,
-        file:FileId,
+        file: FileId,
         message: impl Into<String>,
         additional_info: impl Into<String>,
         span: (Position, Position),
@@ -39,7 +39,7 @@ impl Reporter {
 
     pub fn warn(
         &mut self,
-        file:FileId,
+        file: FileId,
         message: impl Into<String>,
         additional_info: impl Into<String>,
         span: (Position, Position),
