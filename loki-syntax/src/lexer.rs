@@ -9,13 +9,13 @@ use loki_errors::{
 impl<'a> Parser<'a> {
     /// Function that gets the next token and puts it within the Vec whilst returning the
     /// last token
-    pub(crate) fn next(&mut self) -> ParserResult<Span<Token>> {
+    pub(crate) fn next(&mut self) -> Option<Span<Token>> {
         let token = self.next_token();
-        self.past_tokens.push(token);
+        self.past_tokens.push_back(token);
 
-        match self.past_tokens.pop() {
-            Some(token) => Ok(token),
-            None => Err(()),
+        match self.past_tokens.pop_front() {
+            Some(token) => Some(token),
+            None => None,
         }
     }
 
