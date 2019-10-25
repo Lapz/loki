@@ -84,7 +84,7 @@ Grammar(
     ],
     ast: {
         "SourceFile": (
-            options:[
+            collections:[
                 ["functions","FnDef"]
             ],
         ),

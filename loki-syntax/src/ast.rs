@@ -185,7 +185,7 @@ impl TokenKind {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ArgList {
 
-    args:Vec<Expr>
+    pub args:Vec<Expr>
 
 }
 
@@ -193,7 +193,7 @@ pub struct ArgList {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ArrayExpr {
 
-    exprs:Vec<Expr>
+    pub exprs:Vec<Expr>
 
 }
 
@@ -201,9 +201,9 @@ pub struct ArrayExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ArrayType {
 
-    type_ref:TypeRef,
+    pub type_ref:TypeRef,
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -223,9 +223,9 @@ pub struct BindPat {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Block {
 
-    expr:Expr,
+    pub expr:Expr,
 
-    statements:Vec<Stmt>
+    pub statements:Vec<Stmt>
 
 }
 
@@ -233,7 +233,7 @@ pub struct Block {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct BlockExpr {
 
-    block:Block,
+    pub block:Block,
 
 }
 
@@ -247,7 +247,7 @@ pub struct BreakExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct CallExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -255,9 +255,9 @@ pub struct CallExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct CastExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
-    type_ref:TypeRef,
+    pub type_ref:TypeRef,
 
 }
 
@@ -271,7 +271,7 @@ pub struct ClassDef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ClassLit {
 
-    named_field_list:NamedFieldList,
+    pub named_field_list:NamedFieldList,
 
 }
 
@@ -279,9 +279,9 @@ pub struct ClassLit {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ClosureExpr {
 
-    param_list:ParamList,
+    pub param_list:ParamList,
 
-    body:Expr,
+    pub body:Expr,
 
 }
 
@@ -289,9 +289,9 @@ pub struct ClosureExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Condition {
 
-    pat:Pat,
+    pub pat:Pat,
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -305,7 +305,7 @@ pub struct ContinueExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EnumDef {
 
-    variant_list:EnumVariantList,
+    pub variant_list:EnumVariantList,
 
 }
 
@@ -313,7 +313,7 @@ pub struct EnumDef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EnumVariant {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -321,7 +321,7 @@ pub struct EnumVariant {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EnumVariantList {
 
-    variants:Vec<EnumVariant>
+    pub variants:Vec<EnumVariant>
 
 }
 
@@ -353,7 +353,7 @@ pub enum Expr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ExprStmt {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -361,7 +361,7 @@ pub struct ExprStmt {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ExternImportDef {
 
-    imports:Name,
+    pub imports:Name,
 
 }
 
@@ -369,9 +369,9 @@ pub struct ExternImportDef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FieldExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
-    name_ref:NameRef,
+    pub name_ref:NameRef,
 
 }
 
@@ -379,11 +379,11 @@ pub struct FieldExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FnDef {
 
-    param_list:ParamList,
+    pub param_list:ParamList,
 
-    body:Block,
+    pub body:Block,
 
-    ret_type:RetType,
+    pub ret_type:RetType,
 
 }
 
@@ -391,9 +391,9 @@ pub struct FnDef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FnType {
 
-    param_list:ParamList,
+    pub param_list:ParamList,
 
-    ret_type:RetType,
+    pub ret_type:RetType,
 
 }
 
@@ -401,11 +401,11 @@ pub struct FnType {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ForExpr {
 
-    init:Expr,
+    pub init:Expr,
 
-    cond:Expr,
+    pub cond:Expr,
 
-    increment:Expr,
+    pub increment:Expr,
 
 }
 
@@ -413,7 +413,7 @@ pub struct ForExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct IdentType {
 
-    type_ref:TypeRef,
+    pub type_ref:TypeRef,
 
 }
 
@@ -421,7 +421,7 @@ pub struct IdentType {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct IfExpr {
 
-    condition:Condition,
+    pub condition:Condition,
 
 }
 
@@ -435,9 +435,9 @@ pub struct IndexExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LetStmt {
 
-    pat:Pat,
+    pub pat:Pat,
 
-    initializer:Expr,
+    pub initializer:Expr,
 
 }
 
@@ -451,7 +451,7 @@ pub struct Literal {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LiteralPat {
 
-    literal:Literal,
+    pub literal:Literal,
 
 }
 
@@ -459,9 +459,9 @@ pub struct LiteralPat {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MatchArm {
 
-    expr:Expr,
+    pub expr:Expr,
 
-    pats:Vec<Pat>
+    pub pats:Vec<Pat>
 
 }
 
@@ -469,7 +469,7 @@ pub struct MatchArm {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MatchArmList {
 
-    arms:Vec<MatchArm>
+    pub arms:Vec<MatchArm>
 
 }
 
@@ -477,9 +477,9 @@ pub struct MatchArmList {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MatchExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
-    match_arm_list:MatchArmList,
+    pub match_arm_list:MatchArmList,
 
 }
 
@@ -499,9 +499,9 @@ pub struct NameRef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NamedField {
 
-    name_ref:NameRef,
+    pub name_ref:NameRef,
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -515,7 +515,7 @@ pub struct NamedFieldDef {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NamedFieldDefList {
 
-    fields:Vec<NamedFieldDef>
+    pub fields:Vec<NamedFieldDef>
 
 }
 
@@ -523,7 +523,7 @@ pub struct NamedFieldDefList {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NamedFieldList {
 
-    fields:Vec<NamedField>
+    pub fields:Vec<NamedField>
 
 }
 
@@ -531,7 +531,7 @@ pub struct NamedFieldList {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Param {
 
-    pat:Pat,
+    pub pat:Pat,
 
 }
 
@@ -539,7 +539,7 @@ pub struct Param {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ParamList {
 
-    params:Vec<Param>
+    pub params:Vec<Param>
 
 }
 
@@ -547,7 +547,7 @@ pub struct ParamList {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ParenExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -555,7 +555,7 @@ pub struct ParenExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ParenType {
 
-    type_ref:TypeRef,
+    pub type_ref:TypeRef,
 
 }
 
@@ -578,7 +578,7 @@ pub struct PlaceholderPat {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PrefixExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -586,7 +586,7 @@ pub struct PrefixExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct RetType {
 
-    type_ref:TypeRef,
+    pub type_ref:TypeRef,
 
 }
 
@@ -594,7 +594,7 @@ pub struct RetType {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ReturnExpr {
 
-    expr:Expr,
+    pub expr:Expr,
 
 }
 
@@ -602,7 +602,7 @@ pub struct ReturnExpr {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct SourceFile {
 
-    functions:FnDef,
+    pub functions:Vec<FnDef>
 
 }
 
@@ -617,7 +617,7 @@ pub enum Stmt {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TuplePat {
 
-    args:Vec<Pat>
+    pub args:Vec<Pat>
 
 }
 
@@ -637,7 +637,7 @@ pub struct TypeParam {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypeParamList {
 
-    type_params:Vec<TypeParam>
+    pub type_params:Vec<TypeParam>
 
 }
 
@@ -660,6 +660,6 @@ pub struct Visibility {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct WhileExpr {
 
-    condition:Condition,
+    pub condition:Condition,
 
 }

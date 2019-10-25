@@ -80,14 +80,14 @@ pub struct {{ node }} {
 {%- set method_name = m.0 -%}
 {%- set ChildName = m.1 %}
 {%- endif %}
-    {{ method_name }}:{{ ChildName }},
+    pub {{ method_name }}:{{ ChildName }},
 {% endfor %}
 {%- endif%}
 {%- if methods.collections -%}
 {%- for m in methods.collections -%}
 {%- set method_name = m.0 -%}
 {%- set ChildName = m.1 %}
-    {{ method_name }}:Vec<{{ ChildName }}>
+    pub {{ method_name }}:Vec<{{ ChildName }}>
 {% endfor -%}
 {% endif %}
 }
