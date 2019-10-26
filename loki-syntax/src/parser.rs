@@ -3,7 +3,6 @@ mod pratt;
 mod source_file;
 mod visibility;
 
-
 use crate::ast::TokenKind::{self, *};
 use crate::{Parser, ParserResult};
 use loki_errors::pos::Position;

@@ -5,10 +5,30 @@ use crate::T;
 impl<'a> Parser<'a> {
     pub(crate) fn parse_program(&mut self) -> SourceFile {
         while !self.at(EOF) && !self.at(ERROR) {
-            println!("{:?}", self.past_tokens);
+            // println!("{:?}", self.past_tokens);
             let has_visibility = self.has_visibility();
 
-            println!("{:?}", has_visibility);
+            if has_visibility {
+                match self.peek_token() {
+                    T![type] => unimplemented!(),
+                    T![fn] => unimplemented!(),
+                    T![enum] => unimplemented!(),
+                    T![class] => unimplemented!(),
+                    _ => {
+                        self.recover();
+                    }
+                }
+            } else {
+                match self.current() {
+                    T![type] => unimplemented!(),
+                    T![fn] => unimplemented!(),
+                    T![enum] => unimplemented!(),
+                    T![class] => unimplemented!(),
+                    _ => {
+                        self.recover();
+                    }
+                }
+            }
 
             self.bump();
         }
