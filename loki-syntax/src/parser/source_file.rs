@@ -10,7 +10,7 @@ impl<'a> Parser<'a> {
 
             if has_visibility {
                 match self.peek_token() {
-                    T![type] => unimplemented!(),
+                    T![type] => self.parse_type_alias(true),
                     T![fn] => unimplemented!(),
                     T![enum] => unimplemented!(),
                     T![class] => unimplemented!(),
@@ -20,7 +20,7 @@ impl<'a> Parser<'a> {
                 }
             } else {
                 match self.current() {
-                    T![type] => unimplemented!(),
+                    T![type] => self.parse_type_alias(false),
                     T![fn] => unimplemented!(),
                     T![enum] => unimplemented!(),
                     T![class] => unimplemented!(),

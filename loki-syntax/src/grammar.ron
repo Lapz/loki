@@ -109,7 +109,10 @@ Grammar(
                 "TypeAscriptionOwner",    
             ]
         ),
-        "TypeAliasDef":(),
+        "TypeAliasDef":(
+            options:[["type_params","TypeParamList"]],
+            attributes: [["name","Name"],["ty","TypeRef"]]
+        ),
         "ExternImportDef":(
             options: [["imports","Name"]]
         ),
@@ -215,12 +218,15 @@ Grammar(
                 "Literal",
             ],
         ),
-        "Visibility": (),
+        "Visibility": (enum:[
+            "Public",
+            "Private"
+        ]),
         "Name": (),
         "NameRef": (),
         "TypeParamList": (
             collections: [
-                ["type_params", "TypeParam" ],
+                ["type_params", "TypeParam" ]
             ]
         ),
         "ArgList": (
@@ -228,7 +234,10 @@ Grammar(
                 ["args", "Expr"]
             ]
         ),
-        "TypeParam": ( traits: ["NameOwner"] ),
+        "TypeParam": (
+            attributes:[["name","Name"]],
+            traits: ["NameOwner"]
+        ),
         "ExprStmt": (
             options: [ ["expr", "Expr"] ]
         ),

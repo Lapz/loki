@@ -1,9 +1,14 @@
 mod pratt;
 
 mod source_file;
+mod type_alias;
+mod type_params;
+mod types;
 mod visibility;
-
-use crate::ast::TokenKind::{self, *};
+use crate::ast::{
+    self,
+    TokenKind::{self, *},
+};
 use crate::{Parser, ParserResult};
 use loki_errors::pos::Position;
 impl<'a> Parser<'a> {
@@ -78,6 +83,31 @@ impl<'a> Parser<'a> {
         }
     }
 
+    pub(crate) fn expect_with_msg<T: Into<String>>(&mut self, expected: TokenKind, msg: T) {
+        if self.token_is_ahead(|t| t == expected) {
+            self.bump();
+        } else {
+            self.parser_error(format!("Expected `{}`", expected.text()), msg);
+        }
+    }
+
+    pub(crate) fn expected(&mut self, expected: TokenKind) -> bool {
+        if self.token_is_ahead(|t| t == expected) {
+            self.bump();
+            true
+        } else {
+            self.parser_error(
+                format!("Expected `{}`", expected.text()),
+                format!(
+                    "Expected `{}` but instead found `{}`",
+                    expected.text(),
+                    self.current().text()
+                ),
+            );
+            false
+        }
+    }
+
     fn recover(&mut self) {
         if self.at(T!["{"]) || self.at(T!["}"]) {
             return;
@@ -115,26 +145,20 @@ impl<'a> Parser<'a> {
             })
     }
 
-    // pub(crate) fn expect(&mut self, token_to_check: TokenKind, msg: &str) -> ParserResult<()> {
-    //     match self.next() {
-    //         Ok(Spanned {
-    //             ref span,
-    //             value: Token { ref token },
-    //         }) => {
-    //             if token == token_to_check {
-    //                 return Ok(());
-    //             }
+    fn current_string(&self) -> &str {
+        self.past_tokens
+            .back()
+            .map(|token| {
+                &self.input[token.start.absolute as usize
+                    ..token.start.absolute as usize + token.value.len as usize]
+            })
+            .unwrap_or("")
+    }
 
-    //             let msg = format!("{} but instead found `{}`", msg, token);
-
-    //             self.span_error(msg, *span);
-
-    //             Err(())
-    //         }
-
-    //         Err(_) => Err(()),
-    //     }
-    // }
+    pub(crate) fn ident(&mut self) -> ast::Name {
+        self.expect(IDENT);
+        unimplemented!()
+    }
 }
 
 #[cfg(test)]
