@@ -7,7 +7,7 @@ use crate::{Span, Token, TokenKind::*};
 impl<'a> Parser<'a> {
     pub(crate) fn parse_visibility(&mut self) -> ast::Visibility {
         self.expect(T![export]);
-        ast::Visibility {}
+        ast::Visibility::Public
     }
 }
 

@@ -181,147 +181,111 @@ impl TokenKind {
 
 
 
+
     // ArgList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ArgList {
 
-    pub args:Vec<Expr>
+    pub args:Vec<Expr>,
 
 }
+
 
     // ArrayExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ArrayExpr {
 
-    pub exprs:Vec<Expr>
+    pub exprs:Vec<Expr>,
 
 }
 
-    // ArrayType
+// ArrayType
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ArrayType {
+pub struct ArrayType;
 
-    pub type_ref:TypeRef,
 
-    pub expr:Expr,
-
-}
-
-    // BinExpr
+// BinExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct BinExpr {
+pub struct BinExpr;
 
-}
 
-    // BindPat
+// BindPat
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct BindPat {
+pub struct BindPat;
 
-}
+
 
     // Block
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Block {
 
-    pub expr:Expr,
+    pub expr:Option<Expr>,
 
-    pub statements:Vec<Stmt>
+    pub statements:Vec<Stmt>,
 
 }
 
-    // BlockExpr
+// BlockExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct BlockExpr {
+pub struct BlockExpr;
 
-    pub block:Block,
 
-}
-
-    // BreakExpr
+// BreakExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct BreakExpr {
+pub struct BreakExpr;
 
-}
 
-    // CallExpr
+// CallExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct CallExpr {
+pub struct CallExpr;
 
-    pub expr:Expr,
 
-}
-
-    // CastExpr
+// CastExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct CastExpr {
+pub struct CastExpr;
 
-    pub expr:Expr,
 
-    pub type_ref:TypeRef,
-
-}
-
-    // ClassDef
+// ClassDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ClassDef {
+pub struct ClassDef;
 
-}
 
-    // ClassLit
+// ClassLit
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ClassLit {
+pub struct ClassLit;
 
-    pub named_field_list:NamedFieldList,
 
-}
-
-    // ClosureExpr
+// ClosureExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ClosureExpr {
+pub struct ClosureExpr;
 
-    pub param_list:ParamList,
 
-    pub body:Expr,
-
-}
-
-    // Condition
+// Condition
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Condition {
+pub struct Condition;
 
-    pub pat:Pat,
 
-    pub expr:Expr,
-
-}
-
-    // ContinueExpr
+// ContinueExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ContinueExpr {
+pub struct ContinueExpr;
 
-}
 
-    // EnumDef
+// EnumDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct EnumDef {
+pub struct EnumDef;
 
-    pub variant_list:EnumVariantList,
 
-}
-
-    // EnumVariant
+// EnumVariant
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct EnumVariant {
+pub struct EnumVariant;
 
-    pub expr:Expr,
 
-}
 
     // EnumVariantList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EnumVariantList {
 
-    pub variants:Vec<EnumVariant>
+    pub variants:Vec<EnumVariant>,
 
 }
 
@@ -349,215 +313,153 @@ pub enum Expr {
     Literal,
 }
 
-    // ExprStmt
+
+// ExprStmt
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ExprStmt {
+pub struct ExprStmt;
 
-    pub expr:Expr,
 
-}
-
-    // ExternImportDef
+// ExternImportDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ExternImportDef {
+pub struct ExternImportDef;
 
-    pub imports:Name,
 
-}
-
-    // FieldExpr
+// FieldExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct FieldExpr {
+pub struct FieldExpr;
 
-    pub expr:Expr,
 
-    pub name_ref:NameRef,
-
-}
-
-    // FnDef
+// FnDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct FnDef {
+pub struct FnDef;
 
-    pub param_list:ParamList,
 
-    pub body:Block,
-
-    pub ret_type:RetType,
-
-}
-
-    // FnType
+// FnType
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct FnType {
+pub struct FnType;
 
-    pub param_list:ParamList,
 
-    pub ret_type:RetType,
-
-}
-
-    // ForExpr
+// ForExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ForExpr {
+pub struct ForExpr;
 
-    pub init:Expr,
 
-    pub cond:Expr,
-
-    pub increment:Expr,
-
-}
-
-    // IdentType
+// IdentType
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct IdentType {
+pub struct IdentType;
 
-    pub type_ref:TypeRef,
 
-}
-
-    // IfExpr
+// IfExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct IfExpr {
+pub struct IfExpr;
 
-    pub condition:Condition,
 
-}
-
-    // IndexExpr
+// IndexExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct IndexExpr {
+pub struct IndexExpr;
 
-}
 
-    // LetStmt
+// LetStmt
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct LetStmt {
+pub struct LetStmt;
 
-    pub pat:Pat,
 
-    pub initializer:Expr,
-
-}
-
-    // Literal
+// Literal
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Literal {
+pub struct Literal;
 
-}
 
-    // LiteralPat
+// LiteralPat
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct LiteralPat {
+pub struct LiteralPat;
 
-    pub literal:Literal,
 
-}
 
     // MatchArm
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MatchArm {
 
-    pub expr:Expr,
+    pub expr:Option<Expr>,
 
-    pub pats:Vec<Pat>
+    pub pats:Vec<Pat>,
 
 }
+
 
     // MatchArmList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MatchArmList {
 
-    pub arms:Vec<MatchArm>
+    pub arms:Vec<MatchArm>,
 
 }
 
-    // MatchExpr
+// MatchExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct MatchExpr {
+pub struct MatchExpr;
 
-    pub expr:Expr,
 
-    pub match_arm_list:MatchArmList,
-
-}
-
-    // Name
+// Name
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Name {
+pub struct Name;
 
-}
 
-    // NameRef
+// NameRef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct NameRef {
+pub struct NameRef;
 
-}
 
-    // NamedField
+// NamedField
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct NamedField {
+pub struct NamedField;
 
-    pub name_ref:NameRef,
 
-    pub expr:Expr,
-
-}
-
-    // NamedFieldDef
+// NamedFieldDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct NamedFieldDef {
+pub struct NamedFieldDef;
 
-}
+
 
     // NamedFieldDefList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NamedFieldDefList {
 
-    pub fields:Vec<NamedFieldDef>
+    pub fields:Vec<NamedFieldDef>,
 
 }
+
 
     // NamedFieldList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NamedFieldList {
 
-    pub fields:Vec<NamedField>
+    pub fields:Vec<NamedField>,
 
 }
 
-    // Param
+// Param
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Param {
+pub struct Param;
 
-    pub pat:Pat,
 
-}
 
     // ParamList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ParamList {
 
-    pub params:Vec<Param>
+    pub params:Vec<Param>,
 
 }
 
-    // ParenExpr
+// ParenExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ParenExpr {
+pub struct ParenExpr;
 
-    pub expr:Expr,
 
-}
-
-    // ParenType
+// ParenType
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ParenType {
+pub struct ParenType;
 
-    pub type_ref:TypeRef,
-
-}
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum Pat {
@@ -568,41 +470,33 @@ pub enum Pat {
     LiteralPat,
 }
 
-    // PlaceholderPat
+
+// PlaceholderPat
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct PlaceholderPat {
+pub struct PlaceholderPat;
 
-}
 
-    // PrefixExpr
+// PrefixExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct PrefixExpr {
+pub struct PrefixExpr;
 
-    pub expr:Expr,
 
-}
-
-    // RetType
+// RetType
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct RetType {
+pub struct RetType;
 
-    pub type_ref:TypeRef,
 
-}
-
-    // ReturnExpr
+// ReturnExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct ReturnExpr {
+pub struct ReturnExpr;
 
-    pub expr:Expr,
 
-}
 
     // SourceFile
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct SourceFile {
 
-    pub functions:Vec<FnDef>
+    pub functions:Vec<FnDef>,
 
 }
 
@@ -613,31 +507,44 @@ pub enum Stmt {
     LetStmt,
 }
 
+
+
     // TuplePat
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TuplePat {
 
-    pub args:Vec<Pat>
+    pub args:Vec<Pat>,
 
 }
+
 
     // TypeAliasDef
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypeAliasDef {
 
+    pub type_params:Option<TypeParamList>,
+
+    pub name:Name,
+
+    pub ty:TypeRef,
+
 }
+
 
     // TypeParam
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypeParam {
 
+    pub name:Name,
+
 }
+
 
     // TypeParamList
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypeParamList {
 
-    pub type_params:Vec<TypeParam>
+    pub type_params:Vec<TypeParam>,
 
 }
 
@@ -650,16 +557,15 @@ pub enum TypeRef {
     IdentType,
 }
 
-    // Visibility
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct Visibility {
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub enum Visibility {
+
+    Public,
+    Private,
 }
 
-    // WhileExpr
+
+// WhileExpr
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
-pub struct WhileExpr {
-
-    pub condition:Condition,
-
-}
+pub struct WhileExpr;

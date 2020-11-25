@@ -67,6 +67,12 @@ pub enum {{ node }} {
 {%- endfor %}
 }
 {%- endif -%}
+{%if not methods.enum and not methods.collections and not methods.attributes %}
+// {{ node }}
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+pub struct {{ node }};
+{% continue %}
+{%endif%}
 {%if not methods.enum %}
     // {{ node }}
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
@@ -80,16 +86,23 @@ pub struct {{ node }} {
 {%- set method_name = m.0 -%}
 {%- set ChildName = m.1 %}
 {%- endif %}
-    pub {{ method_name }}:{{ ChildName }},
+    pub {{ method_name }}:Option<{{ ChildName }}>,
 {% endfor %}
 {%- endif%}
 {%- if methods.collections -%}
 {%- for m in methods.collections -%}
 {%- set method_name = m.0 -%}
 {%- set ChildName = m.1 %}
-    pub {{ method_name }}:Vec<{{ ChildName }}>
+    pub {{ method_name }}:Vec<{{ ChildName }}>,
 {% endfor -%}
 {% endif %}
+{%- if methods.attributes -%}
+{%- for a in methods.attributes -%}
+{%- set attr_name = a.0 -%}
+{%- set ChildName = a.1 %}
+    pub {{ attr_name }}:{{ ChildName }},
+{% endfor -%}
+{%- endif%}
 }
 {%- endif-%}
 {%- endfor%}
